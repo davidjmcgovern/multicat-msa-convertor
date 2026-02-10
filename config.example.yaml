@@ -1,0 +1,12 @@
+distributor_id: "10094001"
+name: "DISTRIBUTOR NAME"
+address: "123 MAIN STREET"
+city: "ANYTOWN"
+state: "CA"
+zip_code: "00000"
+country: "USA"
+contact_last_name: "DOE"
+contact_first_name: "JOHN"
+contact_phone: "8005551212"
+contact_email: "contact@example.com"
+test_mode: true
