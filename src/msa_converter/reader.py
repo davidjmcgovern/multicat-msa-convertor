@@ -32,7 +32,7 @@ def read_input(path: str | Path) -> pd.DataFrame:
     df = df.rename(columns=COLUMN_ALIASES)
 
     # Strip whitespace from all string columns
-    for col in df.select_dtypes(include="object").columns:
+    for col in df.select_dtypes(include=["object", "string"]).columns:
         df[col] = df[col].astype(str).str.strip()
 
     # Filter to MSA-reportable rows
