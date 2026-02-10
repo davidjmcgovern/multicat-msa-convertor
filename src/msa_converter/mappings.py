@@ -5,6 +5,7 @@ COLUMN_ALIASES = {
     "Catagories": "Categories",
     "on hand Inventory": "OnHandInventory",
     "Invoice 3": "Invoice",
+    "Invoice Number": "Invoice",
     "Cash/carry": "CashCarry",
     "Class of trade": "ClassOfTrade",
     "Item Code": "ItemCode",
