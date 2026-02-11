@@ -42,8 +42,9 @@ def read_input(source: Union[str, Path, BinaryIO], filename: str | None = None) 
     # Strip whitespace from column headers
     df.columns = df.columns.str.strip()
 
-    # Rename known aliases (e.g. "Catagories" -> "Categories")
-    df = df.rename(columns=COLUMN_ALIASES)
+    # Case-insensitive column alias lookup
+    aliases_lower = {k.lower(): v for k, v in COLUMN_ALIASES.items()}
+    df = df.rename(columns=lambda c: aliases_lower.get(c.lower(), c))
 
     # Strip whitespace from all string columns
     for col in df.select_dtypes(include=["object", "string"]).columns:

@@ -61,6 +61,17 @@ class TestReadInputBytesIO:
         assert df.iloc[0]["CustomerName"] == "ACME"
         assert df.iloc[0]["Categories"] == "Cigars"
 
+    def test_case_insensitive_aliases(self):
+        content = (
+            "customer number,CUSTOMER NAME,msa,catagories\n"
+            "C001,ACME,Yes,Cigars\n"
+        )
+        buf = BytesIO(content.encode("utf-8"))
+        df = read_input(buf)
+        assert "CustomerNumber" in df.columns
+        assert "CustomerName" in df.columns
+        assert "Categories" in df.columns
+
     def test_unsupported_format_raises(self, csv_bytes):
         buf = BytesIO(csv_bytes)
         with pytest.raises(ValueError, match="Unsupported"):
