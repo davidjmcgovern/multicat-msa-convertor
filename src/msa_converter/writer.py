@@ -28,3 +28,19 @@ def write_msa(
         for pur in purs:
             f.write(pur.to_line() + "\r\n")
         f.write(tot.to_line() + "\r\n")
+
+
+def write_msa_bytes(
+    hid: HIDRecord,
+    bids: list[BIDRecord],
+    sids: list[SIDRecord],
+    purs: list[PURRecord],
+    tot: TOTRecord,
+) -> bytes:
+    """Return MSA file content as bytes (for in-memory downloads)."""
+    lines = [hid.to_line()]
+    lines.extend(bid.to_line() for bid in bids)
+    lines.extend(sid.to_line() for sid in sids)
+    lines.extend(pur.to_line() for pur in purs)
+    lines.append(tot.to_line())
+    return "\r\n".join(lines).encode("ascii") + b"\r\n"

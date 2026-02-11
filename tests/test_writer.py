@@ -10,7 +10,7 @@ from msa_converter.builder import build_records
 from msa_converter.config import DistributorConfig
 from msa_converter.reader import read_input
 from msa_converter.validator import validate_input, validate_output
-from msa_converter.writer import write_msa
+from msa_converter.writer import write_msa, write_msa_bytes
 
 
 @pytest.fixture
@@ -150,6 +150,37 @@ class TestWriteMsa:
         hid, bids, sids, purs, tot = build_records(sample_df, config)
         result = validate_output(bids, sids, purs, tot)
         assert result.is_valid
+
+
+class TestWriteMsaBytes:
+    def test_returns_bytes(self, sample_df, config):
+        hid, bids, sids, purs, tot = build_records(sample_df, config)
+        data = write_msa_bytes(hid, bids, sids, purs, tot)
+        assert isinstance(data, bytes)
+
+    def test_crlf_line_endings(self, sample_df, config):
+        hid, bids, sids, purs, tot = build_records(sample_df, config)
+        data = write_msa_bytes(hid, bids, sids, purs, tot)
+        assert b"\n" not in data.replace(b"\r\n", b"")
+
+    def test_line_count(self, sample_df, config):
+        hid, bids, sids, purs, tot = build_records(sample_df, config)
+        data = write_msa_bytes(hid, bids, sids, purs, tot)
+        lines = [l for l in data.split(b"\r\n") if l]
+        assert len(lines) == 1 + len(bids) + len(sids) + len(purs) + 1
+
+    def test_matches_file_output(self, sample_df, config):
+        hid, bids, sids, purs, tot = build_records(sample_df, config)
+        data = write_msa_bytes(hid, bids, sids, purs, tot)
+        with tempfile.NamedTemporaryFile(suffix=".msa", delete=False) as f:
+            path = f.name
+        try:
+            write_msa(path, hid, bids, sids, purs, tot)
+            with open(path, "rb") as f:
+                file_data = f.read()
+            assert data == file_data
+        finally:
+            os.unlink(path)
 
 
 class TestEndToEnd:
