@@ -70,7 +70,9 @@ def build_records(
             sku=str(sku),
             product_description=str(row["ItemDescription"]),
             items_per_selling_unit=str(int(row["unit"])),
+            unit_size_description=str(row.get("SellingUnit", "")),
             promotion_indicator=has_promo,
+            mfr_product_id=str(int(row["UPCCode"])) if pd.notna(row["UPCCode"]) else "",
             msa_category_code=msa_code,
             inventory=float(inventory),
         ))
