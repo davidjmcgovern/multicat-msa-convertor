@@ -91,8 +91,8 @@ def build_records(
         row = df[mask].iloc[0]
 
         sid_records.append(SIDRecord(
-            customer_number=cust_num,
-            shipping_number=shipping_number,
+            customer_number="",
+            shipping_number=cust_num,
             customer_name=cust_name,
             address=address,
             city=city,
@@ -123,8 +123,8 @@ def build_records(
 
         for sku, agg in sku_agg.iterrows():
             pur_records.append(PURRecord(
-                customer_number=cust_num,
-                shipping_number=shipping_number,
+                customer_number="",
+                shipping_number=cust_num,
                 sku=str(sku),
                 invoice_number=str(agg["Invoice"]),
                 transaction_date=fmt_date(str(agg["Date"])),
