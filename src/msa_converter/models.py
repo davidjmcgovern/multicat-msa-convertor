@@ -51,9 +51,9 @@ class HIDRecord:
             + fmt(self.contact_last_name, 20)               # 187-206
             + fmt(self.contact_first_name, 20)              # 207-226
             + fmt("", 5)                                    # 227-231 dialing code reserved
-            + fmt(self.contact_phone, 10, justify="R", fill="0")  # 232-241
+            + fmt(self.contact_phone, 10)                          # 232-241
             + fmt("", 5)                                    # 242-246 dialing code reserved
-            + fmt(self.contact_fax, 10, justify="R", fill="0")    # 247-256
+            + fmt(self.contact_fax, 10)                            # 247-256
             + fmt(self.contact_email, 60)                   # 257-316
             + fmt("0001", 4, justify="R", fill="0")         # 317-320 BID measures
             + fmt("0000", 4, justify="R", fill="0")         # 321-324 SID measures
@@ -92,7 +92,7 @@ class BIDRecord:
             + fmt(self.promotion_description, 50)                  # 82-131
             + fmt(self.items_per_selling_unit, 6, justify="R", fill="0")  # 132-137
             + fmt(self.promotion_indicator, 1)                     # 138
-            + fmt(self.nacs_category_code, 6, justify="R", fill="0")  # 139-144
+            + fmt(self.nacs_category_code, 6)                          # 139-144
             + fmt(self.msa_category_code, 6)                       # 145-150
             + fmt("", 10)                                          # 151-160 project id reserved
             + fmt(self.unit_size, 6, justify="R", fill="0")        # 161-166
@@ -148,9 +148,9 @@ class SIDRecord:
             + fmt(self.country, 3)                              # 194-196
             + fmt(self.state_tax_jurisdiction, 2)               # 197-198
             + fmt("", 3)                                        # 199-201 reserved
-            + fmt(self.phone, 10, justify="R", fill="0")        # 202-211
+            + fmt(self.phone, 10)                                # 202-211
             + fmt(self.class_of_trade, 20)                      # 212-231
-            + fmt(self.tdlinx_number, 7, justify="R", fill="0") # 232-238
+            + fmt(self.tdlinx_number, 7)                         # 232-238
             + fmt(self.cash_carry_indicator, 1)                 # 239
             + fmt("", 16)                                       # 240-255 location number
             + fmt("", 2)                                        # 256-257 machine type
