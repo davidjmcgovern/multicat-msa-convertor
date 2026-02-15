@@ -95,7 +95,7 @@ class BIDRecord:
             + fmt(self.nacs_category_code, 6)                          # 139-144
             + fmt(self.msa_category_code, 6)                       # 145-150
             + fmt("", 10)                                          # 151-160 project id reserved
-            + fmt(self.unit_size, 6, justify="R", fill="0")        # 161-166
+            + fmt(self.unit_size, 6)                               # 161-166
             + fmt(self.unit_size_description, 10)                  # 167-176
             + fmt(self.shipper_flag, 1)                            # 177
             + fmt(self.mfr_promo_code, 10)                         # 178-187
