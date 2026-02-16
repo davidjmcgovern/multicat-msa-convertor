@@ -105,7 +105,7 @@ class BIDRecord:
             + fmt(self.state_tax_jurisdiction, 2)                  # 208-209
             + fmt("", 16, justify="R")                             # 210-225 alt UPC 1
             + fmt("", 16, justify="R")                             # 226-241 alt UPC 2
-            + fmt("", 2, justify="R", fill="0")                    # 242-243 spiral size
+            + fmt("", 2)                                           # 242-243 spiral size
             + fmt("", 4)                                           # 244-247 reserved
             + fmt("003", 3)                                        # 248-250 measure code 1
             + fmt_real(self.inventory, 11)                         # 251-261 measure value 1
