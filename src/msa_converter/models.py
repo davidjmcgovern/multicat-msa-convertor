@@ -88,7 +88,7 @@ class BIDRecord:
             fmt("BID", 3)                                          # 1-3
             + fmt(self.upc, 14, justify="R")                       # 4-17
             + fmt(self.sku, 14, justify="R", fill="0")             # 18-31
-            + fmt(self.product_description, 50)                    # 32-81
+            + fmt(f"{self.product_description} {self.sku}".strip(), 50)  # 32-81
             + fmt(self.promotion_description, 50)                  # 82-131
             + fmt(self.items_per_selling_unit, 6, justify="R", fill="0")  # 132-137
             + fmt(self.promotion_indicator, 1)                     # 138
