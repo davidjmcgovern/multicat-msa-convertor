@@ -29,7 +29,7 @@ with st.sidebar:
     contact_email = st.text_input("Email", max_chars=60)
 
     st.divider()
-    test_mode = st.toggle("Test Mode", value=True)
+    test_mode = st.toggle("Test Mode", value=False)
 
 # --- Main Area ---
 uploaded = st.file_uploader("Upload sales file", type=["csv", "xls", "xlsx"])

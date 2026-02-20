@@ -19,7 +19,7 @@ class DistributorConfig(BaseModel):
     contact_phone: str = Field(default="", max_length=10)
     contact_fax: str = Field(default="", max_length=10)
     contact_email: str = Field(default="", max_length=60)
-    test_mode: bool = True
+    test_mode: bool = False
 
 
 def load_config(path: str | Path) -> DistributorConfig:

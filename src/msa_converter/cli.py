@@ -16,7 +16,7 @@ from msa_converter.writer import write_msa
 @click.argument("input_file", type=click.Path(exists=True))
 @click.option("-o", "--output", default=None, help="Output .msa file path. Defaults to <input_stem>.msa")
 @click.option("-c", "--config", "config_path", default=None, type=click.Path(exists=True), help="Distributor config YAML file")
-@click.option("--test/--live", default=True, help="Test or live submission (default: test)")
+@click.option("--test/--live", default=False, help="Test or live submission (default: live)")
 @click.option("--distributor-id", default=None, help="Override distributor ID from config")
 def convert(input_file, output, config_path, test, distributor_id):
     """Convert a CSV/XLS tobacco sales file to MSA MultiCat format."""
