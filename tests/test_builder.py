@@ -121,7 +121,7 @@ class TestBuildRecords:
         hid, bids, sids, purs, tot = build_records(sample_df, config)
         assert hid.distributor_id == "10094001"
         assert hid.end_date == "20260117"
-        assert hid.test_flag == "T"
+        assert hid.test_flag == " "  # config fixture uses default test_mode=False
         assert hid.distributor_name == "TEST DIST"
 
     def test_bid_category_mapping(self, sample_df, config):
@@ -142,6 +142,12 @@ class TestBuildRecords:
         hid, bids, sids, purs, tot = build_records(sample_df, config)
         for sid in sids:
             assert sid.cash_carry_indicator == "N"
+
+    def test_sid_state_tax_jurisdiction(self, sample_df, config):
+        hid, bids, sids, purs, tot = build_records(sample_df, config)
+        sid_by_state = {sid.state: sid for sid in sids}
+        assert sid_by_state["CA"].state_tax_jurisdiction == "CA"
+        assert sid_by_state["TX"].state_tax_jurisdiction == "TX"
 
     def test_live_mode(self, sample_df):
         config = DistributorConfig(test_mode=False)

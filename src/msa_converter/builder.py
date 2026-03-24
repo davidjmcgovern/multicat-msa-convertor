@@ -101,6 +101,7 @@ def build_records(
             country="USA",
             class_of_trade=str(row["ClassOfTrade"]),
             cash_carry_indicator=YES_NO_MAP.get(str(row["CashCarry"]), "N"),
+            state_tax_jurisdiction=str(state),
         ))
 
     # --- PUR records: one per (customer+location, SKU), aggregate qty ---
