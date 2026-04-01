@@ -19,9 +19,12 @@ COLUMN_ALIASES = {
 # Category name -> 6-digit MSA Category Code
 MSA_CATEGORY_CODES = {
     "Cigarettes": "003231",
+    "CIGS": "003231",
     "Cigars": "003251",
+    "CIGAR": "003251",
     "Cigarillos": "003252",
     "Pipe Tobacco": "003241",
+    "PIPE": "003241",
     "Moist Snuff": "003211",
     "Loose Leaf Chewing Tobacco": "003212",
     "Dry Snuff": "003213",
